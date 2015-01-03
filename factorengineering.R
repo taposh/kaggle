@@ -56,56 +56,56 @@ for(i in 1:nrow(test)){
 
 head(bike,40)
 
-#create Sunday variable
-bike$sunday[bike$day == "02"] <- "1"
-bike$sunday[bike$day != "02"] <- "0"
+# #create Sunday variable
+# bike$sunday[bike$day == "02"] <- "1"
+# bike$sunday[bike$day != "02"] <- "0"
+# 
+# test$sunday[test$day == "02"] <- "1"
+# test$sunday[test$day != "02"] <- "0"
+# 
+# #Monday
+# bike$monday[bike$day == "03"] <- "1"
+# bike$monday[bike$day != "03"] <- "0"
+# 
+# test$monday[test$day == "03"] <- "1"
+# test$monday[test$day != "03"] <- "0"
+# 
+# #Tuesday
+# bike$tuesday[bike$day == "04"] <- "1"
+# bike$tuesday[bike$day != "04"] <- "0"
+# 
+# test$tuesday[test$day == "04"] <- "1"
+# test$tuesday[test$day != "04"] <- "0"
+# 
+# #Wednesday
+# bike$wednesday[bike$day == "05"] <- "1"
+# bike$wednesday[bike$day != "05"] <- "0"
+# 
+# test$wednesday[test$day == "05"] <- "1"
+# test$wednesday[test$day != "05"] <- "0"
+# 
+# #Thursday
+# bike$thursday[bike$day == "06"] <- "1"
+# bike$thursday[bike$day != "06"] <- "0"
+# 
+# test$thursday[test$day == "06"] <- "1"
+# test$thursday[test$day != "06"] <- "0"
+# 
+# #Friday
+# bike$friday[bike$day == "07"] <- "1"
+# bike$friday[bike$day != "07"] <- "0"
+# 
+# test$friday[test$day == "07"] <- "1"
+# test$friday[test$day != "07"] <- "0"
+# 
+# #Saturday
+# bike$saturday[bike$day == "01"] <- "1"
+# bike$saturday[bike$day != "01"] <- "0"
+# 
+# test$saturday[test$day == "01"] <- "1"
+# test$saturday[test$day != "01"] <- "0"
 
-test$sunday[test$day == "02"] <- "1"
-test$sunday[test$day != "02"] <- "0"
-
-#Monday
-bike$monday[bike$day == "03"] <- "1"
-bike$monday[bike$day != "03"] <- "0"
-
-test$monday[test$day == "03"] <- "1"
-test$monday[test$day != "03"] <- "0"
-
-#Tuesday
-bike$tuesday[bike$day == "04"] <- "1"
-bike$tuesday[bike$day != "04"] <- "0"
-
-test$tuesday[test$day == "04"] <- "1"
-test$tuesday[test$day != "04"] <- "0"
-
-#Wednesday
-bike$wednesday[bike$day == "05"] <- "1"
-bike$wednesday[bike$day != "05"] <- "0"
-
-test$wednesday[test$day == "05"] <- "1"
-test$wednesday[test$day != "05"] <- "0"
-
-#Thursday
-bike$thursday[bike$day == "06"] <- "1"
-bike$thursday[bike$day != "06"] <- "0"
-
-test$thursday[test$day == "06"] <- "1"
-test$thursday[test$day != "06"] <- "0"
-
-#Friday
-bike$friday[bike$day == "07"] <- "1"
-bike$friday[bike$day != "07"] <- "0"
-
-test$friday[test$day == "07"] <- "1"
-test$friday[test$day != "07"] <- "0"
-
-#Saturday
-bike$saturday[bike$day == "01"] <- "1"
-bike$saturday[bike$day != "01"] <- "0"
-
-test$saturday[test$day == "01"] <- "1"
-test$saturday[test$day != "01"] <- "0"
-
-head(bike)
+#head(bike)
 
 dayof<-function(X){
   month<-as.matrix(as.numeric(X[,"month"]))
@@ -133,21 +133,7 @@ bike<-bike[,colnames(test)]
 
 #head(bike)
 
-A<-cbind(bike[,"hour"],bike[,"dayof"])
-B<-cbind(test[,"hour"],test[,"dayof"])
 
-A2<-c()
-B2<-c()
-
-for(i in unique(B[,1])){
-  for(j in unique(B[,2])){
-    TEMPA<-matrix(data=0,ncol=1,nrow=nrow(bike))
-    TEMPB<-matrix(data=0,ncol=1,nrow=nrow(test))
-    TEMPA[A[,1]==i & A[,2]==j,1]<-1
-    TEMPB[B[,1]==i & B[,2]==j,1]<-1
-    A2<-cbind(A2,TEMPA)
-    B2<-cbind(B2,TEMPB)
-  }}
 
 #head(bike)
 #test<-test[,colnames(test)!=c("month","hour","dayof")]
@@ -213,8 +199,6 @@ test<-cbind(test,
             sinwind3=sin(2*pi*test[,"windspeed3"]/(0.00001)),
             coswind3=cos(2*pi*test[,"windspeed3"]/(0.00001)))
 
-
-
 bike<-cbind(bike,
             sinhumid=sin(2*pi*bike[,"humidity"]/4),
             coshumid=cos(2*pi*bike[,"humidity"]/4),
@@ -231,27 +215,27 @@ bike<-cbind(bike,
 
 
 
-# #temp and atemp
-bike<-cbind(bike,
-            sintemp2=sin(2*pi*bike[,"temp2"]/(10000)),
-            costemp2=cos(2*pi*bike[,"temp2"]/(10000)),
-            sintemp3=sin(2*pi*bike[,"temp3"]/(1000000)),
-            costemp3=cos(2*pi*bike[,"temp3"]/(1000000)),
-            sinatemp2=sin(2*pi*bike[,"atemp2"]/(10000)),
-            cosatemp2=cos(2*pi*bike[,"atemp2"]/(10000)),
-            sinatemp3=sin(2*pi*bike[,"atemp3"]/(1000000)),
-            cosatemp3=cos(2*pi*bike[,"atemp3"]/(1000000)))
-
-
-test<-cbind(test,
-            sintemp2=sin(2*pi*test[,"temp2"]/(10000)),
-            costemp2=cos(2*pi*test[,"temp2"]/(10000)),
-            sintemp3=sin(2*pi*test[,"temp3"]/(1000000)),
-            costemp3=cos(2*pi*test[,"temp3"]/(1000000)),
-            sinatemp2=sin(2*pi*test[,"atemp2"]/(10000)),
-            cosatemp2=cos(2*pi*test[,"atemp2"]/(10000)),
-            sinatemp3=sin(2*pi*test[,"atemp3"]/(1000000)),
-            cosatemp3=cos(2*pi*test[,"atemp3"]/(1000000)))
+# # #temp and atemp
+# bike<-cbind(bike,
+#             sintemp2=sin(2*pi*bike[,"temp2"]/(10000)),
+#             costemp2=cos(2*pi*bike[,"temp2"]/(10000)),
+#             sintemp3=sin(2*pi*bike[,"temp3"]/(1000000)),
+#             costemp3=cos(2*pi*bike[,"temp3"]/(1000000)),
+#             sinatemp2=sin(2*pi*bike[,"atemp2"]/(10000)),
+#             cosatemp2=cos(2*pi*bike[,"atemp2"]/(10000)),
+#             sinatemp3=sin(2*pi*bike[,"atemp3"]/(1000000)),
+#             cosatemp3=cos(2*pi*bike[,"atemp3"]/(1000000)))
+# 
+# 
+# test<-cbind(test,
+#             sintemp2=sin(2*pi*test[,"temp2"]/(10000)),
+#             costemp2=cos(2*pi*test[,"temp2"]/(10000)),
+#             sintemp3=sin(2*pi*test[,"temp3"]/(1000000)),
+#             costemp3=cos(2*pi*test[,"temp3"]/(1000000)),
+#             sinatemp2=sin(2*pi*test[,"atemp2"]/(10000)),
+#             cosatemp2=cos(2*pi*test[,"atemp2"]/(10000)),
+#             sinatemp3=sin(2*pi*test[,"atemp3"]/(1000000)),
+#             cosatemp3=cos(2*pi*test[,"atemp3"]/(1000000)))
 
 
 ##-----tanhh--------### 
@@ -265,62 +249,235 @@ test<-cbind(test,
 bike$weather[bike$weather == 4] <- 3
 test$weather[test$weather == 4] <- 3
 
-Categorical<-c("holiday","workingday","weather","month","hour","dayof")
-for(i in Categorical){
-  BT<-bike[i]
-  TT<-test[i]
-  BT2<-c()
-  TT2<-c()
-  for(j in unique(BT[,i])){
-    TempMat<-matrix(data=0,nrow=nrow(BT),ncol=1)
-    TempMat[BT==j]<-1
-    BT2<-cbind(BT2,mystr=TempMat)
-    TempMat2<-matrix(data=0,nrow=nrow(TT),ncol=1)
-    TempMat2[TT==j]<-1
-    TT2<-cbind(TT2,TempMat2)
-  }
-  mystr <- paste("tmpmat", toString(j),toString(i), sep="_")
-  #print(mystr)
-  #colnames(BT2[,1])<- mystr
-  #colnames(TT2[,1])<- mystr
-  bike<-cbind(bike[,colnames(bike)!=i], mystr=BT2)
-  #colnames(bike[,colnames(bike)!=i]) <- mystr
-  test<-cbind(test[,colnames(test)!=i], mystr=TT2)
-}
-bike<-cbind(bike,A2)
-test<-cbind(test,B2)
 
-
-
-test<-cbind(test,sin(4*pi*testTIME/(24)),
-            sin(4*pi*testTIME/(1000)),
-            cos(4*pi*testTIME/(24)),
-            cos(4*pi*testTIME/(1000)),
-            tanh(2*pi*testTIME/(24)),
+test<-cbind(test,t1=sin(4*pi*testTIME/(24)),
+            #t2=sin(4*pi*testTIME/(1000)),
+            t3=cos(4*pi*testTIME/(24)),
+            #t4=cos(4*pi*testTIME/(1000)),
+            t5=tanh(2*pi*testTIME/(24)),
             #tanh(2*pi*testTIME/(1000)),
-            tanh(2*pi*testTIME/(365*24)),
-            tanh(4*pi*testTIME/(24)),
+            t6=tanh(2*pi*testTIME/(365*24)),
+            #t7=tanh(4*pi*testTIME/(24)),
             #tanh(4*pi*testTIME/(1000)),
-            tanh(4*pi*testTIME/(365*24)),
-            sin(2*pi*testTIME/(24)),
-            sin(2*pi*testTIME/(1000)),
-            cos(2*pi*testTIME/(24)),
-            cos(2*pi*testTIME/(1000)),
-            sin(4*pi*testTIME/(356*24)),
-            cos(4*pi*testTIME/(365*24)),
-            sin(2*pi*testTIME/(365*24)),cos(2*pi*testTIME/(365*24)),testTIME)
-bike<-cbind(bike,sin(4*pi*bikeTIME/(24)),
-            sin(4*pi*bikeTIME/(1000)),
-            cos(4*pi*bikeTIME/(24)),cos(4*pi*bikeTIME/(1000)),
-            tanh(2*pi*bikeTIME/(24)),#tanh(2*pi*bikeTIME/(1000)),
-            tanh(2*pi*bikeTIME/(365*24)),
-            tanh(4*pi*bikeTIME/(24)),#tanh(4*pi*bikeTIME/(1000)),
-            tanh(4*pi*bikeTIME/(365*24)),
-            sin(2*pi*bikeTIME/(24)),sin(2*pi*bikeTIME/(1000)),
-            cos(2*pi*bikeTIME/(24)),cos(2*pi*bikeTIME/(1000)),
-            sin(4*pi*bikeTIME/(356*24)),
-            cos(4*pi*bikeTIME/(365*24)),
-            sin(2*pi*bikeTIME/(365*24)),cos(2*pi*bikeTIME/(365*24)),bikeTIME)
+            t8=tanh(4*pi*testTIME/(365*24)),
+            t9=sin(2*pi*testTIME/(24)),
+            #t10=sin(2*pi*testTIME/(1000)),
+            t11=cos(2*pi*testTIME/(24)),
+            #t12=cos(2*pi*testTIME/(1000)),
+            t13=sin(4*pi*testTIME/(356*24)),
+            t14=cos(4*pi*testTIME/(365*24)),
+            t15=sin(2*pi*testTIME/(365*24)),
+            t16=cos(2*pi*testTIME/(365*24)),
+            tt=testTIME)
+
+
+bike<-cbind(bike,
+            t1=sin(4*pi*bikeTIME/(24)),
+            #t2=sin(4*pi*bikeTIME/(1000)),
+            t3=cos(4*pi*bikeTIME/(24)),
+            #t4=cos(4*pi*bikeTIME/(1000)),
+            t5=tanh(2*pi*bikeTIME/(24)),#tanh(2*pi*bikeTIME/(1000)),
+            t6=tanh(2*pi*bikeTIME/(365*24)),
+            #t7=tanh(4*pi*bikeTIME/(24)),#tanh(4*pi*bikeTIME/(1000)),
+            t8=tanh(4*pi*bikeTIME/(365*24)),
+            t9=sin(2*pi*bikeTIME/(24)),
+            #t10=sin(2*pi*bikeTIME/(1000)),
+            t11=cos(2*pi*bikeTIME/(24)),
+            #t12=cos(2*pi*bikeTIME/(1000)),
+            t13=sin(4*pi*bikeTIME/(356*24)),
+            t14=cos(4*pi*bikeTIME/(365*24)),
+            t15=sin(2*pi*bikeTIME/(365*24)),
+            t16=cos(2*pi*bikeTIME/(365*24)),
+            tt=bikeTIME)
+
+###################
+#
+##################
+A<-cbind(bike[,"hour"],bike[,"dayof"])
+B<-cbind(test[,"hour"],test[,"dayof"])
+
+A2<-c()
+B2<-c()
+
+for(i in unique(B[,1])){
+  for(j in unique(B[,2])){
+    TEMPA<-matrix(data=0,ncol=1,nrow=nrow(bike))
+    TEMPB<-matrix(data=0,ncol=1,nrow=nrow(test))
+    TEMPA[A[,1]==i & A[,2]==j,1]<-1
+    TEMPB[B[,1]==i & B[,2]==j,1]<-1
+    A2<-cbind(A2,tmp=TEMPA)
+    B2<-cbind(B2,tmp=TEMPB)
+  }}
+
+
+D<-cbind(bike[,"holiday"],bike[,"weather"])
+E<-cbind(test[,"holiday"],test[,"weather"])
+
+D2<-c()
+E2<-c()
+
+for(i in unique(D[,1])){
+  for(j in unique(D[,2])){
+    TEMPD<-matrix(data=0,ncol=1,nrow=nrow(bike))
+    TEMPE<-matrix(data=0,ncol=1,nrow=nrow(test))
+    TEMPD[D[,1]==i & D[,2]==j,1]<-1
+    TEMPE[E[,1]==i & E[,2]==j,1]<-1
+    D2<-cbind(D2,tmp=TEMPD)
+    E2<-cbind(E2,tmp=TEMPE)
+  }}
+
+
+G<-cbind(bike[,"weather"],bike[,"month"])
+H<-cbind(test[,"weather"],test[,"month"])
+
+G2<-c()
+H2<-c()
+
+for(i in unique(G[,1])){
+  for(j in unique(G[,2])){
+    TEMPG<-matrix(data=0,ncol=1,nrow=nrow(bike))
+    TEMPH<-matrix(data=0,ncol=1,nrow=nrow(test))
+    TEMPG[G[,1]==i & G[,2]==j,1]<-1
+    TEMPH[H[,1]==i & H[,2]==j,1]<-1
+    G2<-cbind(G2,tmp=TEMPG)
+    H2<-cbind(H2,tmp=TEMPH)
+  }}
+
+J<-cbind(bike[,"hour"],bike[,"month"])
+K<-cbind(test[,"hour"],test[,"month"])
+
+J2<-c()
+K2<-c()
+
+for(i in unique(J[,1])){
+  for(j in unique(J[,2])){
+    TEMPJ<-matrix(data=0,ncol=1,nrow=nrow(bike))
+    TEMPK<-matrix(data=0,ncol=1,nrow=nrow(test))
+    TEMPJ[J[,1]==i & J[,2]==j,1]<-1
+    TEMPK[K[,1]==i & K[,2]==j,1]<-1
+    J2<-cbind(J2,tmp=TEMPJ)
+    K2<-cbind(K2,tmp=TEMPK)
+  }}
+
+L<-cbind(bike[,"holiday"],bike[,"month"])
+M<-cbind(test[,"holiday"],test[,"month"])
+
+L2<-c()
+M2<-c()
+
+for(i in unique(L[,1])){
+  for(j in unique(L[,2])){
+    TEMPL<-matrix(data=0,ncol=1,nrow=nrow(bike))
+    TEMPM<-matrix(data=0,ncol=1,nrow=nrow(test))
+    TEMPL[L[,1]==i & L[,2]==j,1]<-1
+    TEMPM[M[,1]==i & M[,2]==j,1]<-1
+    L2<-cbind(L2,tmp=TEMPL)
+    M2<-cbind(M2,tmp=TEMPM)
+  }}
+
+N<-cbind(bike[,"dayof"],bike[,"month"])
+O<-cbind(test[,"dayof"],test[,"month"])
+
+N2<-c()
+O2<-c()
+
+for(i in unique(N[,1])){
+  for(j in unique(N[,2])){
+    TEMPN<-matrix(data=0,ncol=1,nrow=nrow(bike))
+    TEMPO<-matrix(data=0,ncol=1,nrow=nrow(test))
+    TEMPN[N[,1]==i & N[,2]==j,1]<-1
+    TEMPO[O[,1]==i & O[,2]==j,1]<-1
+    N2<-cbind(N2,tmp=TEMPN)
+    O2<-cbind(O2,tmp=TEMPO)
+  }}
+
+# bike<-cbind(bike,day_month=N2)
+# test<-cbind(test,day_month=O2)
+
+bike<-cbind(bike,holiday_month=L2)
+test<-cbind(test,holiday_month=M2)
+
+bike<-cbind(bike,hour_month=J2)
+test<-cbind(test,hour_month=K2)
+
+ bike<-cbind(bike,day_hr=A2)
+ test<-cbind(test,day_hr=B2)
+
+ bike<-cbind(bike, holiday_weather=D2)
+ test<-cbind(test, holiday_weather=E2)
+# 
+ bike<-cbind(bike, weather_month=G2)
+ test<-cbind(test, weather_month=H2)
+
+head(bike)
+
+####Level 2 A2N2
+AN<-cbind(bike[,"weather"],bike[,"dayof"],bike[,"holiday"])
+BO<-cbind(test[,"weather"],test[,"dayof"],test[,"holiday"])
+
+AN2<-c()
+BO2<-c()
+
+for(i in unique(AN[,1])){
+  for(j in unique(AN[,2])){
+    for(k in unique(AN[,3])){
+    TEMPAN<-matrix(data=0,ncol=1,nrow=nrow(bike))
+    TEMPBO<-matrix(data=0,ncol=1,nrow=nrow(test))
+    TEMPAN[AN[,1]==i & AN[,2]==j & AN[,3]==k,1]<-1
+    TEMPBO[BO[,1]==i & BO[,2]==j & BO[,3]==k,1]<-1
+    AN2<-cbind(AN2,tmp=TEMPAN)
+    BO2<-cbind(BO2,tmp=TEMPBO)
+  }}}
+
+bike<-cbind(bike,holiday_month_weather=AN2)
+test<-cbind(test,holiday_month_weather=BO2)
+
+###
+ANY<-cbind(bike[,"dayof"],bike[,"hour"],bike[,"month"])
+BOY<-cbind(test[,"dayof"],test[,"hour"],test[,"month"])
+
+ANY2<-c()
+BOY2<-c()
+
+for(i in unique(ANY[,1])){
+  for(j in unique(ANY[,2])){
+    for(k in unique(ANY[,3])){
+      TEMPANY<-matrix(data=0,ncol=1,nrow=nrow(bike))
+      TEMPBOY<-matrix(data=0,ncol=1,nrow=nrow(test))
+      TEMPANY[ANY[,1]==i & ANY[,2]==j & ANY[,3]==k,1]<-1
+      TEMPBOY[BOY[,1]==i & BOY[,2]==j & BOY[,3]==k,1]<-1
+      ANY2<-cbind(ANY2,tmp=TEMPANY)
+      BOY2<-cbind(BOY2,tmp=TEMPBOY)
+    }}}
+
+bike<-cbind(bike,day_hour_month=ANY2)
+test<-cbind(test,day_hour_month=BOY2)
+
+######
+
+ANXW<-cbind(bike[,"weather"],bike[,"holiday"],bike[,"hour"],bike[,"dayof"])
+BOXW<-cbind(test[,"weather"],test[,"holiday"],test[,"hour"],test[,"dayof"])
+
+ANXW2<-c()
+BOXW2<-c()
+
+for(i in unique(ANXW[,1])){
+  for(j in unique(ANXW[,2])){
+    for(k in unique(ANXW[,3])){
+      for(l in unique(ANXW[,4])){
+      TEMPANXW<-matrix(data=0,ncol=1,nrow=nrow(bike))
+      TEMPBOXW<-matrix(data=0,ncol=1,nrow=nrow(test))
+      TEMPANXW[ANXW[,1]==i & ANXW[,2]==j & ANXW[,3]==k & ANXW[,4]==l,1]<-1
+      TEMPBOXW[BOXW[,1]==i & BOXW[,2]==j & BOXW[,3]==k & BOXW[,3]==l,1]<-1
+      ANXW2<-cbind(ANXW2,tmp=TEMPANXW)
+      BOXW2<-cbind(BOXW2,tmp=TEMPBOXW)
+    }}}}
+
+
+
+bike<-cbind(bike,weather_holiday_hr_day=ANXW2)
+test<-cbind(test,weather_holiday_hr_day=BOXW2)
+
 
 bike<-cbind(bike,Number=matrix(data=1,nrow=nrow(bike),ncol=1))
 test<-cbind(test,Number=matrix(data=1,nrow=nrow(test),ncol=1))
@@ -329,5 +486,5 @@ bike<-data.matrix(bike)
 test<-data.matrix(test)
 
 
-head(bike)
+#head(bike)
 

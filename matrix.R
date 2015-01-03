@@ -8,9 +8,9 @@ REG<-bikeInv %*% registered
 TrainPredictions<-cbind(exp(bike %*% ACT))
 TrainPredictions[TrainPredictions[,1]<0,1]<-0
 compare <- cbind(countresult,TrainPredictions)
-auc(countresult,TrainPredictions)
-ci(countresult,TrainPredictions)
-rmsle(countresult,TrainPredictions)
+auc_Counts<-auc(countresult,TrainPredictions)
+#ci_Counts <-ci(countresult,TrainPredictions)
+rmsle_Counts <-rmsle(countresult,TrainPredictions)
 myroc <- roc(countresult,TrainPredictions)
 plot(myroc)
 
@@ -20,12 +20,19 @@ TrainPredictions1[TrainPredictions1[,1]<0,1]<-0
 TrainPredictions2<-cbind(exp(bike %*% REG))
 TrainPredictions2[TrainPredictions2[,1]<0,1]<-0
 TrainPredictionsCombo <- cbind(rowSums(TrainPredictions1,TrainPredictions2))
-auc(countresult,TrainPredictionsCombo)
-rmsle(countresult,TrainPredictionsCombo)
-myroc1 <- roc(countresult,TrainPredictionsCombo)
-myci1 <- ci(countresult,TrainPredictionsCombo)
-plot(myroc1)
+auc_Combo <- auc(countresult,TrainPredictionsCombo)
+rmsle_Combo <- rmsle(countresult,TrainPredictionsCombo)
+#ci_Combo <- ci(countresult,TrainPredictionsCombo)
+#myroc1 <- roc(countresult,TrainPredictionsCombo)
+#plot(myroc1)
 
+
+#Present a standard model summary.
+# print("Auc :")
+# print(auc_Counts)
+# print("Logloss :")
+# print(rmsle_Counts)
+# plot(myroc)
 
 #Predictions count
 cPredictions<-cbind(exp(test %*% ACT))
@@ -56,5 +63,9 @@ timestamp <-  strftime(curtime,"%Y-%m-%d-%H-%M-%S")
 timestamp1 <-paste("Submission_combo_Matrix",timestamp,".csv", sep="_")
 timestamp2 <-paste("Submission_Matrix",timestamp,".csv", sep="_")
 
-write.table(Predictions_comb,file=timestamp1,row.names=FALSE,quote=FALSE,sep=",",col.names=TRUE)
-write.table(Predictions,file=timestamp2,row.names=FALSE,quote=FALSE,sep=",",col.names=TRUE)
+#write.table(Predictions_comb,file=timestamp1,row.names=FALSE,quote=FALSE,sep=",",col.names=TRUE)
+#write.table(Predictions,file=timestamp2,row.names=FALSE,quote=FALSE,sep=",",col.names=TRUE)
+
+x<-paste(timestamp2,"AUC",auc_Counts,"Logloss",rmsle_Counts,collapse="  ")
+print(x)
+write(x, file = "Results_compare.txt",append = TRUE, sep = " ")
