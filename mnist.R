@@ -3,8 +3,8 @@
 ## World-record parameters at http://learn.h2o.ai/content/hands-on_training/deep_learning.html
 ## From https://github.com/h2oai/h2o-training/blob/master/tutorials/unsupervised/anomaly/anomaly.R.md
 
-mnist_train.hex = h2o.importFile(localH2O, path = "C:/Users/rickdell/Documents/Data/H20/mnist_train.csv", key = "mnist_train.hex")
-mnist_test.hex = h2o.importFile(localH2O, path = "C:/Users/rickdell/Documents/Data/H20/mnist_test.csv", key = "mnist_test.hex")
+mnist_train.hex = h2o.importFile(localH2O, path = "C:/Users/Documents/Data/H20/mnist_train.csv", key = "mnist_train.hex")
+mnist_test.hex = h2o.importFile(localH2O, path = "C:/Users/Documents/Data/H20/mnist_test.csv", key = "mnist_test.hex")
 
 predictors = c(1:784)
 resp = 785
